@@ -2,7 +2,7 @@
 
 = Program =
 
- #import Stdio
+ .import Stdio
 
  func main {
    ; this is a comment.
