@@ -5,7 +5,11 @@
  .import Stdio
 
  func main {
+
    ; this is a comment.
+
    print "Hello world"
+
    ret 0
+
  }
