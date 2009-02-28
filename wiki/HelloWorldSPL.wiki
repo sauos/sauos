@@ -1,15 +1,12 @@
 #summary A hello world for the Simple Programming Language.
 
 = Program =
-
+{{{
  .import Stdio
 
  func main {
-
    ; this is a comment.
-
    print "Hello world"
-
    ret 0
-
  }
+}}}
