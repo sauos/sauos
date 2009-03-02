@@ -4,7 +4,7 @@ int tmp_rand;
 
 unsigned int rand(0
 {
-	tmp_rand = seed_a * seed_b * 3 - 2;
+	tmp_rand = seed_a * seed_b * 3 - 2 * 2 - 7;
 	tmp_rand = (tmp_rand << seed_a) * seed_b * 5;
 	return tmp_rand;
 }
