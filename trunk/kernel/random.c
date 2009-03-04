@@ -2,7 +2,7 @@ int seed_a = 32768;
 int seed_b = 65536;
 int tmp_rand;
 
-unsigned int rand(0
+unsigned int rand()
 {
 	tmp_rand = seed_a * seed_b * 3 - 2 * 2 - 7;
 	tmp_rand = (tmp_rand << seed_a) * seed_b * 5;
