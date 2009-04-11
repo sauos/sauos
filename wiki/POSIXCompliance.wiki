@@ -7,8 +7,8 @@ While GNU mess-up is fine, we need a POSIX subsystem.
 
 = Details =
 
- * Create a kernel/posix directory and build-up a number a posix_*() functions.
- * Look at the POSIX standards and implement posix_*() functions for those functions.
+ * Create a kernel/posix directory and build-up a number a POSIX-compliant functions.
+ * Look at the POSIX standards and implement those functions.
 
 = Progress =
 
