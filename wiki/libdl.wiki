@@ -1,0 +1,9 @@
+#summary Making libdl.
+
+= Introduction =
+
+Making a libdl is very hard. We need to get this done before we begin to be Porting software.
+
+= Details =
+
+We currently have libdl stubbed for dlopen(), dlsym(), dlclose() and a working dlerror().
