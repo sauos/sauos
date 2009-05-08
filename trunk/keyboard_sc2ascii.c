@@ -5,9 +5,8 @@ char *sc2ascii(int sc)
 {
  int counter;
 
- counter++;
- if (scs[counter] == sc)
- {
-  return characters[counter];
- }
+ do {
+  counter++;
+ } while (characters[counter] != sc);
+ return characters[counter];
 }
