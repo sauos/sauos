@@ -52,7 +52,6 @@ void main()
     idt_install();
     isrs_install();
     irq_install();
-    paging_install();
     init_video();
     settextcolor(0, 7);
     timer_install();

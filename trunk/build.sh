@@ -11,12 +11,12 @@ gcc -Wall -Os -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -I.
 gcc -Wall -Os -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -I./include -c -o kb.o kb.c
 gcc -Wall -Os -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -I./include -c -o vsprintf.o vsprintf.c
 gcc -Wall -Os -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -I./include -c -o ata_c.o ata_c.c
-gcc -Wall -Os -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -I./include -c -o paging.o paging.c
+#gcc -Wall -Os -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -I./include -c -o paging.o paging.c
 for f in *.o; do
  strip -R.comment --strip-debug $f
 done
 nasm -f aout -o ata.o ata.s
-ld -T link.ld -o kernel.bin start.o main.o scrn.o gdt.o idt.o isrs.o irq.o timer.o kb.o ata.o ata_c.o vsprintf.o paging.o
+ld -T link.ld -o kernel.bin start.o main.o scrn.o gdt.o idt.o isrs.o irq.o timer.o kb.o ata.o ata_c.o vsprintf.o
 #objcopy -R.comment -Obinary kernel.bin
 echo Cleaning up object files...
 rm *.o
