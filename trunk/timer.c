@@ -18,13 +18,6 @@ void timer_handler(struct regs *r)
 {
     /* Increment our 'tick count' */
     timer_ticks++;
-
-    /* Delay by 200ns */
-    inportb(0x80);
-    inportb(0x80);
-
-    /* Seed /dev/{,u}random. */
-    srandom(timer_ticks);
 }
 
 /* This will continuously loop until the given time has

@@ -48,12 +48,11 @@ void outportb (unsigned short _port, unsigned char _data)
 
 void main()
 {
-    int i;
-
     gdt_install();
     idt_install();
     isrs_install();
     irq_install();
+    paging_install();
     init_video();
     settextcolor(0, 7);
     timer_install();
@@ -61,14 +60,8 @@ void main()
 
     __asm__ __volatile__ ("sti");
 
-    printf("SauOS version 0.1\nThanxs OSDev.org, Bran's kernel development tuts and Linus Torvalds!");
-    printf("\nDelaying boot (settling hardware)...");
-    timer_wait(200);
-
+    printf("SauOS version 0.1\nThanks OSDev.org, Bran's kernel development tuts and Linus Torvalds!");
     printf("\nI'm bored, and have nothing to do... try typing stuff on the keyboard. Remember, 0.1??\n");
-
-//    i = 10 / 0;
-//    putch(i);
 
     for (;;);
 }
