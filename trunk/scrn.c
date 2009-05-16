@@ -5,7 +5,7 @@
 *  Notes: No warranty expressed or implied. Use at own risk. */
 #include <system.h>
 #include <stdarg.h> /* printf() */
-#include "vsprintf.c"
+//#include "vsprintf.c"
 
 /* These define our textpointer, our background and foreground
 *  colors (attributes), and x and y cursor coordinates */

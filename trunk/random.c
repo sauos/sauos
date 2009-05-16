@@ -8,7 +8,7 @@ int srandom(int seed)
 
 int random()
 {
- return seed * seed * seed + seed / seed + seed * seed - seed;
+ return s * s * s + s / s + s * s - s;
 }
 
 int dev_urandom_read(int len, int buf)

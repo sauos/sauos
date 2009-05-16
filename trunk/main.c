@@ -61,11 +61,11 @@ void main()
 
     __asm__ __volatile__ ("sti");
 
-    printk("SauOS version 0.1\nThanxs OSDev.org, Bran's kernel development tuts and Linus Torvalds!");
-    printk("\nDelaying boot (settling hardware)...");
+    printf("SauOS version 0.1\nThanxs OSDev.org, Bran's kernel development tuts and Linus Torvalds!");
+    printf("\nDelaying boot (settling hardware)...");
     timer_wait(200);
 
-    printk("\nI'm bored, and have nothing to do... try typing stuff on the keyboard. Remember, 0.1??\n");
+    printf("\nI'm bored, and have nothing to do... try typing stuff on the keyboard. Remember, 0.1??\n");
 
 //    i = 10 / 0;
 //    putch(i);

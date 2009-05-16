@@ -10,8 +10,10 @@ gcc -Wall -Os -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdin
 gcc -Wall -Os -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -I./include -c -o timer.o timer.c
 gcc -Wall -Os -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -I./include -c -o kb.o kb.c
 gcc -Wall -Os -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -I./include -c -o random.o random.c
-#gcc -Wall -Os -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -I./include -c -o vsprintf.o vsprintf.c
-ld -T link.ld -o kernel.bin start.o main.o scrn.o gdt.o idt.o isrs.o irq.o timer.o kb.o
+gcc -Wall -Os -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -I./include -c -o vsprintf.o vsprintf.c
+gcc -Wall -Os -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -I./include -c -o ata_c.o ata_c.c
+nasm -f aout -o ata.o ata.s
+ld -T link.ld -o kernel.bin start.o main.o scrn.o gdt.o idt.o isrs.o irq.o timer.o kb.o vsprintf.o random.o ata.o ata_c.o
 #objcopy -R.comment -Obinary kernel.bin
 echo Cleaning up object files...
 rm *.o
