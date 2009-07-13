@@ -59,8 +59,8 @@ void main()
 
     __asm__ __volatile__ ("sti");
 
-    printf("SauOS version 0.1\nThanks OSDev.org, Bran's kernel development tuts and Linus Torvalds!");
-    printf("\nI'm bored, and have nothing to do... try typing stuff on the keyboard. Remember, 0.1??\n");
-
+    //printf("SauOS version 0.1\nThanks OSDev.org, Bran's kernel development tuts and Linus Torvalds!");
+    //printf("\nI'm bored, and have nothing to do... try typing stuff on the keyboard. Remember, 0.1??\n");
+  puts("Hi, how are you?\n");
     for (;;);
 }
