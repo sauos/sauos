@@ -4,8 +4,6 @@
 *
 *  Notes: No warranty expressed or implied. Use at own risk. */
 #include <system.h>
-//#include <stdarg.h> /* printf() */	//I have omitted this for the time being. Remember, until we have a full cross-compiler there are no std libs!
-//#include "vsprintf.c"
 
 /* These define our textpointer, our background and foreground
 *  colors (attributes), and x and y cursor coordinates */
@@ -149,20 +147,6 @@ void puts(unsigned char *text)
     }
 }
 
-/* Uses vsprintf.c from Linux 0.01 to print formatted text. */
-/*int printf(const char *fmt, ...)
-{
-    va_list a;
-    char *b;
-    int c;
-
-    va_start(a, fmt);
-    c = vsprintf(b, fmt, a);
-    va_end(a);
-    puts(b);
-    return c;
-}
-*/
 /* Sets the forecolor and backcolor that we will use */
 void settextcolor(unsigned char forecolor, unsigned char backcolor)
 {

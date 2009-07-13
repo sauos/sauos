@@ -43,18 +43,18 @@ mboot:
 ; will insert an 'extern _main', followed by 'call _main', right
 ; before the 'jmp $'.
 stublet:
-    extern main
-    call main
+    extern _main
+    call _main
     jmp $
 
 ; This will set up our new segment registers. We need to do
 ; something special in order to set CS. We do what is called a
 ; far jump. A jump that includes a segment as well as an offset.
 ; This is declared in C as 'extern void gdt_flush();'
-global gdt_flush
-extern gp
-gdt_flush:
-    lgdt [gp]
+global _gdt_flush
+extern _gp
+_gdt_flush:
+    lgdt [_gp]
     mov ax, 0x10
     mov ds, ax
     mov es, ax
@@ -67,260 +67,260 @@ flush2:
 
 ; Loads the IDT defined in '_idtp' into the processor.
 ; This is declared in C as 'extern void idt_load();'
-global idt_load
-extern idtp
-idt_load:
-    lidt [idtp]
+global _idt_load
+extern _idtp
+_idt_load:
+    lidt [_idtp]
     ret
 
 ; In just a few pages in this tutorial, we will add our Interrupt
 ; Service Routines (ISRs) right here!
-global isr0
-global isr1
-global isr2
-global isr3
-global isr4
-global isr5
-global isr6
-global isr7
-global isr8
-global isr9
-global isr10
-global isr11
-global isr12
-global isr13
-global isr14
-global isr15
-global isr16
-global isr17
-global isr18
-global isr19
-global isr20
-global isr21
-global isr22
-global isr23
-global isr24
-global isr25
-global isr26
-global isr27
-global isr28
-global isr29
-global isr30
-global isr31
+global _isr0
+global _isr1
+global _isr2
+global _isr3
+global _isr4
+global _isr5
+global _isr6
+global _isr7
+global _isr8
+global _isr9
+global _isr10
+global _isr11
+global _isr12
+global _isr13
+global _isr14
+global _isr15
+global _isr16
+global _isr17
+global _isr18
+global _isr19
+global _isr20
+global _isr21
+global _isr22
+global _isr23
+global _isr24
+global _isr25
+global _isr26
+global _isr27
+global _isr28
+global _isr29
+global _isr30
+global _isr31
 
 ;  0: Divide By Zero Exception
-isr0:
+_isr0:
     cli
     push byte 0
     push byte 0
     jmp isr_common_stub
 
 ;  1: Debug Exception
-isr1:
+_isr1:
     cli
     push byte 0
     push byte 1
     jmp isr_common_stub
 
 ;  2: Non Maskable Interrupt Exception
-isr2:
+_isr2:
     cli
     push byte 0
     push byte 2
     jmp isr_common_stub
 
 ;  3: Int 3 Exception
-isr3:
+_isr3:
     cli
     push byte 0
     push byte 3
     jmp isr_common_stub
 
 ;  4: INTO Exception
-isr4:
+_isr4:
     cli
     push byte 0
     push byte 4
     jmp isr_common_stub
 
 ;  5: Out of Bounds Exception
-isr5:
+_isr5:
     cli
     push byte 0
     push byte 5
     jmp isr_common_stub
 
 ;  6: Invalid Opcode Exception
-isr6:
+_isr6:
     cli
     push byte 0
     push byte 6
     jmp isr_common_stub
 
 ;  7: Coprocessor Not Available Exception
-isr7:
+_isr7:
     cli
     push byte 0
     push byte 7
     jmp isr_common_stub
 
 ;  8: Double Fault Exception (With Error Code!)
-isr8:
+_isr8:
     cli
     push byte 8
     jmp isr_common_stub
 
 ;  9: Coprocessor Segment Overrun Exception
-isr9:
+_isr9:
     cli
     push byte 0
     push byte 9
     jmp isr_common_stub
 
 ; 10: Bad TSS Exception (With Error Code!)
-isr10:
+_isr10:
     cli
     push byte 10
     jmp isr_common_stub
 
 ; 11: Segment Not Present Exception (With Error Code!)
-isr11:
+_isr11:
     cli
     push byte 11
     jmp isr_common_stub
 
 ; 12: Stack Fault Exception (With Error Code!)
-isr12:
+_isr12:
     cli
     push byte 12
     jmp isr_common_stub
 
 ; 13: General Protection Fault Exception (With Error Code!)
-isr13:
+_isr13:
     cli
     push byte 13
     jmp isr_common_stub
 
 ; 14: Page Fault Exception (With Error Code!)
-isr14:
+_isr14:
     cli
     push byte 14
     jmp isr_common_stub
 
 ; 15: Reserved Exception
-isr15:
+_isr15:
     cli
     push byte 0
     push byte 15
     jmp isr_common_stub
 
 ; 16: Floating Point Exception
-isr16:
+_isr16:
     cli
     push byte 0
     push byte 16
     jmp isr_common_stub
 
 ; 17: Alignment Check Exception
-isr17:
+_isr17:
     cli
     push byte 0
     push byte 17
     jmp isr_common_stub
 
 ; 18: Machine Check Exception
-isr18:
+_isr18:
     cli
     push byte 0
     push byte 18
     jmp isr_common_stub
 
 ; 19: Reserved
-isr19:
+_isr19:
     cli
     push byte 0
     push byte 19
     jmp isr_common_stub
 
 ; 20: Reserved
-isr20:
+_isr20:
     cli
     push byte 0
     push byte 20
     jmp isr_common_stub
 
 ; 21: Reserved
-isr21:
+_isr21:
     cli
     push byte 0
     push byte 21
     jmp isr_common_stub
 
 ; 22: Reserved
-isr22:
+_isr22:
     cli
     push byte 0
     push byte 22
     jmp isr_common_stub
 
 ; 23: Reserved
-isr23:
+_isr23:
     cli
     push byte 0
     push byte 23
     jmp isr_common_stub
 
 ; 24: Reserved
-isr24:
+_isr24:
     cli
     push byte 0
     push byte 24
     jmp isr_common_stub
 
 ; 25: Reserved
-isr25:
+_isr25:
     cli
     push byte 0
     push byte 25
     jmp isr_common_stub
 
 ; 26: Reserved
-isr26:
+_isr26:
     cli
     push byte 0
     push byte 26
     jmp isr_common_stub
 
 ; 27: Reserved
-isr27:
+_isr27:
     cli
     push byte 0
     push byte 27
     jmp isr_common_stub
 
 ; 28: Reserved
-isr28:
+_isr28:
     cli
     push byte 0
     push byte 28
     jmp isr_common_stub
 
 ; 29: Reserved
-isr29:
+_isr29:
     cli
     push byte 0
     push byte 29
     jmp isr_common_stub
 
 ; 30: Reserved
-isr30:
+_isr30:
     cli
     push byte 0
     push byte 30
     jmp isr_common_stub
 
 ; 31: Reserved
-isr31:
+_isr31:
     cli
     push byte 0
     push byte 31
@@ -329,7 +329,7 @@ isr31:
 
 ; We call a C function in here. We need to let the assembler know
 ; that '_fault_handler' exists in another file
-extern fault_handler
+extern _fault_handler
 
 ; This is our common ISR stub. It saves the processor state, sets
 ; up for kernel mode segments, calls the C-level fault handler,
@@ -347,7 +347,7 @@ isr_common_stub:
     mov gs, ax
     mov eax, esp
     push eax
-    mov eax, fault_handler
+    mov eax, _fault_handler
     call eax
     pop eax
     pop gs
@@ -358,136 +358,136 @@ isr_common_stub:
     add esp, 8
     iret
 
-global irq0
-global irq1
-global irq2
-global irq3
-global irq4
-global irq5
-global irq6
-global irq7
-global irq8
-global irq9
-global irq10
-global irq11
-global irq12
-global irq13
-global irq14
-global irq15
+global _irq0
+global _irq1
+global _irq2
+global _irq3
+global _irq4
+global _irq5
+global _irq6
+global _irq7
+global _irq8
+global _irq9
+global _irq10
+global _irq11
+global _irq12
+global _irq13
+global _irq14
+global _irq15
 
 ; 32: IRQ0
-irq0:
+_irq0:
     cli
     push byte 0
     push byte 32
     jmp irq_common_stub
 
 ; 33: IRQ1
-irq1:
+_irq1:
     cli
     push byte 0
     push byte 33
     jmp irq_common_stub
 
 ; 34: IRQ2
-irq2:
+_irq2:
     cli
     push byte 0
     push byte 34
     jmp irq_common_stub
 
 ; 35: IRQ3
-irq3:
+_irq3:
     cli
     push byte 0
     push byte 35
     jmp irq_common_stub
 
 ; 36: IRQ4
-irq4:
+_irq4:
     cli
     push byte 0
     push byte 36
     jmp irq_common_stub
 
 ; 37: IRQ5
-irq5:
+_irq5:
     cli
     push byte 0
     push byte 37
     jmp irq_common_stub
 
 ; 38: IRQ6
-irq6:
+_irq6:
     cli
     push byte 0
     push byte 38
     jmp irq_common_stub
 
 ; 39: IRQ7
-irq7:
+_irq7:
     cli
     push byte 0
     push byte 39
     jmp irq_common_stub
 
 ; 40: IRQ8
-irq8:
+_irq8:
     cli
     push byte 0
     push byte 40
     jmp irq_common_stub
 
 ; 41: IRQ9
-irq9:
+_irq9:
     cli
     push byte 0
     push byte 41
     jmp irq_common_stub
 
 ; 42: IRQ10
-irq10:
+_irq10:
     cli
     push byte 0
     push byte 42
     jmp irq_common_stub
 
 ; 43: IRQ11
-irq11:
+_irq11:
     cli
     push byte 0
     push byte 43
     jmp irq_common_stub
 
 ; 44: IRQ12
-irq12:
+_irq12:
     cli
     push byte 0
     push byte 44
     jmp irq_common_stub
 
 ; 45: IRQ13
-irq13:
+_irq13:
     cli
     push byte 0
     push byte 45
     jmp irq_common_stub
 
 ; 46: IRQ14
-irq14:
+_irq14:
     cli
     push byte 0
     push byte 46
     jmp irq_common_stub
 
 ; 47: IRQ15
-irq15:
+_irq15:
     cli
     push byte 0
     push byte 47
     jmp irq_common_stub
 
-extern irq_handler
+extern _irq_handler
 
 irq_common_stub:
     pusha
@@ -504,7 +504,7 @@ irq_common_stub:
     mov eax, esp
 
     push eax
-    mov eax, irq_handler
+    mov eax, _irq_handler
     call eax
     pop eax
 
