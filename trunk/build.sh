@@ -19,7 +19,7 @@ echo '> Assembling Bootloader...'
 # Compile bootloader
 nasm -f elf -o start.o start.asm
 
-echo '> Assembling ScorchOS Kernel Source...'
+echo '> Assembling ApolloOS Kernel Source...'
 #Compile Kernel Modules (C Programming Language)
 gcc -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -fleading-underscore -I./include -o main.o -c main.c
 gcc -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -fleading-underscore -I./include -o scrn.o -c scrn.c
@@ -33,6 +33,7 @@ gcc -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc
 echo '> Creating Kernel Binary...'
 # Links the kernel modules together into a single binary
 ld -T link.ld -o kernel.x start.o main.o scrn.o gdt.o idt.o isrs.o irq.o timer.o kb.o
+
 
 #cd ..
 #echo '> Adding Kernel and Apps to Floppy Image...'
