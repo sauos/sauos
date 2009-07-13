@@ -21,18 +21,18 @@ nasm -f elf -o start.o start.asm
 
 echo '> Assembling ApolloOS Kernel Source...'
 #Compile Kernel Modules (C Programming Language)
-gcc -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -fleading-underscore -I./include -o main.o -c main.c
-gcc -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -fleading-underscore -I./include -o scrn.o -c scrn.c
-gcc -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -fleading-underscore -I./include -o gdt.o -c gdt.c
-gcc -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -fleading-underscore -I./include -o idt.o -c idt.c
-gcc -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -fleading-underscore -I./include -o isrs.o -c isrs.c
-gcc -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -fleading-underscore -I./include -o irq.o -c irq.c
-gcc -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -fleading-underscore -I./include -o timer.o -c timer.c
-gcc -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -fleading-underscore -I./include -o kb.o -c kb.c
+#gcc -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -fleading-underscore -I./include -o main.o -c main.c
+#gcc -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -fleading-underscore -I./include -o scrn.o -c scrn.c
+#gcc -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -fleading-underscore -I./include -o gdt.o -c gdt.c
+#gcc -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -fleading-underscore -I./include -o idt.o -c idt.c
+#gcc -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -fleading-underscore -I./include -o isrs.o -c isrs.c
+#gcc -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -fleading-underscore -I./include -o irq.o -c irq.c
+#gcc -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -fleading-underscore -I./include -o timer.o -c timer.c
+#gcc -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -fleading-underscore -I./include -o kb.o -c kb.c
 
 echo '> Creating Kernel Binary...'
 # Links the kernel modules together into a single binary
-ld -T link.ld -o kernel.x start.o main.o scrn.o gdt.o idt.o isrs.o irq.o timer.o kb.o
+ld -T link.ld -o kernel.x start.o #main.o scrn.o gdt.o idt.o isrs.o irq.o timer.o kb.o
 
 
 #cd ..
