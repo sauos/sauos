@@ -21,7 +21,7 @@ nasm -f elf -o start.o start.asm
 
 echo '> Assembling ScorchOS Kernel Source...'
 #Compile Kernel Modules (C Programming Language)
-gcc -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -fleading-underscore -I./include -o kernel.o -c kernel.c
+gcc -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -fleading-underscore -I./include -o main.o -c main.c
 gcc -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -fleading-underscore -I./include -o scrn.o -c scrn.c
 gcc -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -fleading-underscore -I./include -o gdt.o -c gdt.c
 gcc -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -fleading-underscore -I./include -o idt.o -c idt.c
@@ -32,31 +32,31 @@ gcc -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc
 
 echo '> Creating Kernel Binary...'
 # Links the kernel modules together into a single binary
-ld -T link.ld -o kernel.x start.o kernel.o scrn.o gdt.o idt.o isrs.o irq.o timer.o kb.o
+ld -T link.ld -o kernel.x start.o main.o scrn.o gdt.o idt.o isrs.o irq.o timer.o kb.o
 
-cd ..
-echo '> Adding Kernel and Apps to Floppy Image...'
+#cd ..
+#echo '> Adding Kernel and Apps to Floppy Image...'
 #Time for that loop-back mount!
-rm -rf tmp-loop
+#rm -rf tmp-loop
 
-mkdir tmp-loop && mount -o loop -t vfat disk_image/sau.img tmp-loop
+#mkdir tmp-loop && mount -o loop -t vfat disk_image/sau.img tmp-loop
 # Remove previous kernel.x before adding the new one...
-cd tmp-loop && rm -rf kernel.x && cd ..
-cp src/kernel.x tmp-loop/kernel.x
+#cd tmp-loop && rm -rf kernel.x && cd ..
+#cp src/kernel.x tmp-loop/kernel.x
 
 # Move included program binaries onto the floppy image (uncomment to use)
 #cp app/*.bin tmp-loop
-echo '> Unmounting Loop-back Floppy...'
+#echo '> Unmounting Loop-back Floppy...'
 # Unmount the loop-back floppy
-umount tmp-loop || exit
-rm -rf tmp-loop
+#umount tmp-loop || exit
+#rm -rf tmp-loop
 
-echo '> Quick Cleanup...'
+#echo '> Quick Cleanup...'
 # A quick cleanup (comment this out while debugging)
-cd src
-rm *.o
-rm *.x
-cd ..
+#cd src
+#rm *.o
+#rm *.x
+#cd ..
 # Note that (unlike MikeOS) you are not expected to carry source code in the
 # app directory - just the binaries. You can add additional build and
 # cleanup routines if you'd prefer to include souce however
