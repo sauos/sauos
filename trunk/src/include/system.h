@@ -44,7 +44,6 @@ extern void init_video(void);
 extern void puts(unsigned char *text);
 extern void putch(unsigned char c);
 extern void cls();
-extern void shell_csr_fix();
 
 /* GDT.C */
 extern void gdt_set_gate(int num, unsigned long base, unsigned long limit, unsigned char access, unsigned char gran);
