@@ -100,3 +100,26 @@ int StringWrite(char *String)
   WritePort(0x3D5, temp);
  }
 }
+
+char *FormatString(const char *Format, ...)
+{
+ va_list a;
+ char *b;
+
+ va_start(a, Format);
+ vsnprintf(b, Format, a);
+ va_end(a);
+
+ return b;
+}
+
+void *WriteFormattedString(const char *Format, ...)
+{
+ va_list a;
+ char *b;
+
+ va_start(a, Format);
+ vsnprintf(b, Format, a);
+ WriteString(b);
+ va_end(a);
+}
