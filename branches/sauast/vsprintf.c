@@ -3,6 +3,7 @@
  * Wirzenius wrote this portably, Torvalds fucked it up :-)
  */
 #include "stdarg.h"
+#define strlen(a) StringLength(a)
 
 /* we use this so that we can do without the ctype library */
 #define is_digit(c)	((c) >= '0' && (c) <= '9')

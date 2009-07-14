@@ -1,3 +1,4 @@
+#include "stdarg.h"
 #define CREATEPTR(addr) (void*)addr
 int CurWhere_X;
 int CurWhere_Y;
@@ -107,7 +108,7 @@ char *FormatString(const char *Format, ...)
  char *b;
 
  va_start(a, Format);
- vsnprintf(b, Format, a);
+ vsprintf(b, Format, a);
  va_end(a);
 
  return b;
@@ -119,7 +120,7 @@ void *WriteFormattedString(const char *Format, ...)
  char *b;
 
  va_start(a, Format);
- vsnprintf(b, Format, a);
- WriteString(b);
+ vsprintf(b, Format, a);
+ StringWrite(b);
  va_end(a);
 }

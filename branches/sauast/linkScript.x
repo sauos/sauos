@@ -10,7 +10,7 @@ SECTIONS {
  .data phys : AT (phys) {
   *(.data)
  }
- .bss phys : AT (0x001023f6) {
+ .bss phys : AT (0x00200000) {
   bss = .;
   *(.bss)
  }
