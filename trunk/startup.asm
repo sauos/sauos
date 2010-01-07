@@ -1,3 +1,4 @@
+; SauOS looks like it's like in C++ - TRUE --andrewsteinborn
 global loader           ; making entry point visible to linker
 extern kmain            ; kmain is defined elsewhere
  
@@ -36,7 +37,7 @@ static_ctors_loop:
    cmp ebx, end_ctors
    jb .body
  
-   call _main                      ; call kernel proper
+   call kmain                      ; call kernel proper
  
 static_dtors_loop:
    mov ebx, start_dtors
@@ -49,27 +50,6 @@ static_dtors_loop:
    jb .body
  
    hlt                             ; halt machine should kernel return
-
-; GDT function - thx to OSDev guys!
-gdtr dw 0 ; For limit storage
-     dd 0 ; For base storage
- 
-setGdt:
-   mov   eax, [esp + 4]
-   mov   [gdtr + 2], eax
-   mov   ax, [esp + 8]
-   mov   [gdtr], ax
-   lgdt  [gdtr]
-   jmp   0x08:reload_CS ; 0x08 points at the new code selector
-.reload_CS:
-   ; Reload data segment registers:
-   mov   ax, 0x10 ; 0x10 points at the new data selector
-   mov   ds, ax
-   mov   es, ax
-   mov   fs, ax
-   mov   gs, ax
-   mov   ss, ax
-   ret
 
 section .bss
 align 4
