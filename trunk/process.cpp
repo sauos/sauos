@@ -1,8 +1,31 @@
+#include "process.h"
+
+process_list_t procs;
+
 int UpTime;
+int latest;
+
+int Process::GetLatestPid()
+{
+	return latest;
+}
+
+// proc_state_t is for fork()ing
+process_t Process::NewProcess(proc_state_t state)
+{
+	process_t newproc;
+	int NewPid = Process::GetLatestPid() + 1;
+	procs[NewPid]->status = PROC_ACTIVE;
+	if (state) procs[NewPid]->state = state;
+	procs[NewPid]->Ticket->Active = false;
+	latest++;
+	newproc->pid = NewPid;
+	return newproc;
+}
 
 int Process::IdleTask()
 {
-	for(;;);
+	for(;;) UpTime++;
 }
 
 int Process::GetLuckyProcess()
@@ -53,11 +76,17 @@ int Process::LotterySch()
 	int iffy;
 	for (;;) {
 		pid = Process::GetLuckyProcess();
+		Process::SwitchTo(pid);
 		// Wait...
 		do {
 			iffy++;
 			iffy--;
 			iffy++;
-		} while (iffy < 200);
+			iffy--;
+			iffy++;
+			iffy--;
+			iffy++;
+		} while (iffy < 800);
+		reseed_random();
 	}
 }

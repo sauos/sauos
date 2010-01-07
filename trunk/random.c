@@ -35,3 +35,8 @@ void rand_seed( unsigned int seed1, unsigned int seed2 )
    if (seed1) SEED_X = seed1;   /* use default seeds if parameter is 0 */
    if (seed2) SEED_Y = seed2;
    }
+
+void reseed_random()
+   {
+   rand_seed(get_seed(), SEED_X / 18000 + SEED_Y / 30903 + SEED_X - 9 * 2);
+   }
