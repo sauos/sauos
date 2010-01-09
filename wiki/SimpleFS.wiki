@@ -1,0 +1,57 @@
+#summary The SauOS filesystem layer
+#labels Phase-Implementation
+
+= Introduction =
+
+The SauOS filesystem layer is called SimpleFS. SimpleFS implements devices and filesystems (implemented on top of the API).
+
+
+= API =
+
+== Structures ==
+
+=== fs_t ===
+{{{
+struct {
+ dev_t *device;
+ char *type;
+ int dev_id;
+} fs_t;
+}}}
+
+=== dev_t ===
+{{{
+struct {
+ char *device_name;
+ void *read_func;
+ void *write_func;
+ void *stat_func;
+ void *lseek_func;
+} dev_t;
+}}}
+
+== Functions ==
+
+=== SimpleFS::MountFileSystem ===
+{{{
+fs_t SimpleFS::MountFileSystem(char *dev_name, char *fstype)
+}}}
+This creates a device that is linked to a filesystem. Returns a fs_t.
+Example:
+{{{
+fs_t *test = SimpleFS::MountFileSystem("asdf", "toyfs");
+SimpleFS::CreateFile(test, "dhuwfhfhuf");
+}}}
+=== SimpleFS::RegisterDevice ===
+{{{
+int SimpleFS::RegisterDevice(dev_t *device)
+}}}
+This registers a device. Returns device ID.
+Example:
+{{{
+dev_t *random;
+random->device_name = "random";
+random->read_func = (void*)random_read;
+random->write_func = (void*)random_seed;
+SimpleFS::RegisterDevice(random);
+}}}
