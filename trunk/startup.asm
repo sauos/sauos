@@ -1,5 +1,5 @@
-global _loader                          ; Make entry point visible to linker.
-extern _main                            ; _main is defined elsewhere
+global loader                          ; Make entry point visible to linker.
+extern kmain                           ; kmain is defined elsewhere
  
 ; setting up the Multiboot header - see GRUB docs for details
 MODULEALIGN equ  1<<0             ; align loaded modules on page boundaries
@@ -43,7 +43,7 @@ MultiBootHeader:
 ; reserve initial kernel stack space -- that's 16k.
 STACKSIZE equ 0x4000
  
-_loader:
+loader:
     ; NOTE: Until paging is set up, the code must be position-independent and use physical
     ; addresses, not virtual ones!
     mov ecx, (BootPageDirectory - KERNEL_VIRTUAL_BASE)
