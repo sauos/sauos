@@ -7,12 +7,13 @@ void kmain(struct multiboot_data* mbd, unsigned int magic);
 
 void kmain( struct multiboot_data* mbd, unsigned int magic )
 {
-   init_dt();
    // Init SimpleFS
    if (!SimpleFS::Initialize()) {
 	// RIP!!!
+	WriteString("Failed to start SimpleFS!");
 	for(;;);
    }
+   // Hang on Tom, there's more...
 }
 
 typedef long size_t;
