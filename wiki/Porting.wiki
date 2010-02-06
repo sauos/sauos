@@ -1,9 +1,0 @@
-#summary Porting software to SauOS
-
-= Details =
-
-The GNU target is offically *i386-pc-sauos*. Currently:
-
- * Porting Python, ncurses and bash need libdl
- * We need to get mount working for coreutils
- * Command-line Vim is our final goal before 0.5.
