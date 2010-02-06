@@ -17,4 +17,5 @@ _sauos_start:
 	call _sauos_cmain
 	jmp $
 
+.bss
 stack:	resb 0x4000
