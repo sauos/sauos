@@ -1,8 +1,8 @@
-ENTRY (_sauos_start)
+ENTRY (_sauos_init)
 
 SECTIONS{
     . = 0x00100000;
-
+    _sauos_start = .;
     .text :{
         *(.text)
     }

@@ -20,12 +20,7 @@
    along with this program; if not, write to the Free Software
    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA. */
 
-#include <multiboot.h>
-
 /* Macros. */
-
-/* Check if the bit BIT in FLAGS is set. */
-#define CHECK_FLAG(flags,bit)   ((flags) & (1 << (bit)))
 
 /* Some screen stuff. */
 /* The number of columns. */
@@ -55,8 +50,6 @@ void printf (const char *format, ...);
 void
 _sauos_cmain (unsigned long magic, unsigned long addr)
 {
-  multiboot_info_t *mbi;
-
   /* Clear the screen. */
   cls ();
   printf ("This is SauOS. (c) 2009-2010 SauOS developers.");
