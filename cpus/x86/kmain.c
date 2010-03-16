@@ -41,14 +41,21 @@ static int ypos;
 static volatile unsigned char *video;
 
 /* Forward declarations. */
-void _sauos_cmain (unsigned long magic, unsigned long addr);
+//void _sauos_cmain (unsigned long magic, unsigned long addr);
 static void cls (void);
 static void itoa (char *buf, int base, int d);
 static void putchar (int c);
 void printf (const char *format, ...);
 
+char *
+__arch_getargs()
+{
+	// FIXME: I'M A STUB
+	return "";
+}
+
 void
-_sauos_cmain (unsigned long magic, unsigned long addr)
+__arch_init (char *args)
 {
   /* Clear the screen. */
   cls ();

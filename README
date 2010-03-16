@@ -1,0 +1,5 @@
+What to do first:
+
+Run `./init_build.sh <arch>' to initialize the tree for building.
+
+Then you may run `make'.
